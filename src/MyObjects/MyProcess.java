@@ -51,10 +51,12 @@ public class MyProcess implements Comparable<MyProcess>{
         int ratio = generator.nextInt(4);
         int limit = threshold + Math.abs(range-threshold)/5;
 
-        if (ratio == 0)
+        if (ratio == 0) {
             return generator.nextInt(limit, range);
-        else
+        }
+        else {
             return generator.nextInt(threshold, limit);
+        }
     }
 
     public static int generatePhaseLength2(int range, int threshold, int limit) {
@@ -62,10 +64,12 @@ public class MyProcess implements Comparable<MyProcess>{
 
         int ratio = generator.nextInt(4);
 
-        if (ratio == 0)
+        if (ratio == 0) {
             return generator.nextInt(limit, range);
-        else
+        }
+        else {
             return generator.nextInt(threshold, limit);
+        }
     }
 
     @Override
@@ -74,8 +78,12 @@ public class MyProcess implements Comparable<MyProcess>{
     }
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         MyProcess p = (MyProcess) o;
         return processNumber == p.getProcessNumber() && stringNumber == p.getStringNumber();
     }

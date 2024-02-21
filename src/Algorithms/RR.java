@@ -18,24 +18,25 @@ public class RR {
                 for (int j=0; j<database.getNumberOfProcesses(); j++) {
                     if (database.getMainArray()[i][j].getMomentOfNotification() <= currentMoment
                             && !tempArray.contains(database.getMainArray()[i][j])
-                            && !garbageArray.contains(database.getMainArray()[i][j]))
+                            && !garbageArray.contains(database.getMainArray()[i][j])) {
                         tempArray.add(database.getMainArray()[i][j]);
+                    }
                 }
 
-                if (tempArray.size() != 0) {
+                if (!tempArray.isEmpty()) {
 
                     tempArray.sort(new SortByMomentOfNotification());
 
-                    if (tempArray.get(0).getPhaseLength() <= timeQuantum) {
-                        tempArray.get(0).setWaitingTime(currentMoment-tempArray.get(0).getMomentOfNotification());
-                        currentMoment += tempArray.get(0).getPhaseLength();
-                        tempArray.get(0).setPhaseLength(0);
-                        garbageArray.add(tempArray.get(0));
-                        tempArray.remove(0);
+                    if (tempArray.getFirst().getPhaseLength() <= timeQuantum) {
+                        tempArray.getFirst().setWaitingTime(currentMoment-tempArray.getFirst().getMomentOfNotification());
+                        currentMoment += tempArray.getFirst().getPhaseLength();
+                        tempArray.getFirst().setPhaseLength(0);
+                        garbageArray.add(tempArray.getFirst());
+                        tempArray.removeFirst();
                     }
                     else {
-                        tempArray.get(0).setWaitingTime(currentMoment-tempArray.get(0).getMomentOfNotification());
-                        tempArray.get(0).setPhaseLength(tempArray.get(0).getPhaseLength()-timeQuantum);
+                        tempArray.getFirst().setWaitingTime(currentMoment-tempArray.getFirst().getMomentOfNotification());
+                        tempArray.getFirst().setPhaseLength(tempArray.getFirst().getPhaseLength()-timeQuantum);
                         currentMoment += timeQuantum;
                     }
                 }
